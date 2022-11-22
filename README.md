@@ -102,3 +102,49 @@ if __name__ == '__main__':
 
   </details>
 
+<details>
+  <summary> -edit function </summary>
+  
+### parse_message changed to message_method
+  
+`before`<br>
+
+```python
+message=request.get_json()#receive a message
+chat_id,text,message_id,message_author_username,message_author_id,message_author_is_bot,message_author_first_name,message_author_language_code,message_date=parse_message(message=message)#methods message
+
+```
+`now`
+```py
+message=message_method(request.get_json())
+
+```
+
+`now`<br>
+### method
+`before`
+
+<details>
+  <summary> all methods were in 1 line and divided into 2 groups (message,reply_message)</summary>
+  
+  ```python
+message=request.get_json()#receive a message
+chat_id,text,message_id,message_author_username,message_author_id,message_author_is_bot,message_author_first_name,message_author_language_code,message_date=parse_message(message=message)#methods message
+  ```
+   </details>
+
+`now`
+  <details>
+  <summary>now all methods can be called immediately via message['...']</summary>
+  
+  ```python 
+message=message_method(request.get_json())
+print(message['text'])
+"""
+    you can see the list of all methods via "print(message)"
+"""
+  ```
+
+  </details>
+
+
