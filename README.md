@@ -78,7 +78,7 @@ if __name__ == '__main__':
 #git clone
 import os
 import sys
-sys.path.append(os.path.abspath('your campfire folder path'))
+sys.path.append(os.path.abspath('C:/Users/User/Desktop/bonfire'))
 from flask import Flask
 from bonfire.Bot import *
 from bonfire.method import *
@@ -86,15 +86,15 @@ import time
 from flask import request,Response
 import requests
 app = Flask(__name__)
-bot=Bots("TOKEN")#setting up a token for requests
+bot=Bots("5742908539:AAGP6V4K-sGYlRaJUFJlx2l8uNtk308lpiM")
 
-@commands(app)#command handler, there can be only 1 in the code
-def main():
- if message(request.get_json())['text'] == "Test":#receive a message
-    send_message(bot,chat_id=message(request.get_json())['chat_id'],text=f"hello @{message(request.get_json())['author_username']}")#send message
- return Response('OK', status=200)#return status to cmd (POST 200 OK)
+@commands(app)#this function should be only 1 in the whole project
+def main():#the name "main" can be anything, it will not affect the operation of the program
+ message=message_method(request.get_json())#receive a message
+ if "/start" in message['text']:#/start command handler
+    send_message(bot,chat_id=message['chat_id'],text=f"hello @{message['author_username']}!")#send message
+ return Response('Успешно', status=200)
 if __name__ == '__main__':
-
        run(app)#start code
        """set-webhook - > https://api.telegram.org/botTOKEN/setWebhook?url=URL"""
 ```
